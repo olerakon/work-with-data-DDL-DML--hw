@@ -27,22 +27,28 @@ ALTER USER 'sys_test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pass
 *Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.*
 
 
-###Решение
+### Решение
 
 
 Работа проводилась на Ubuntu server 24.04LTS.
 Установил mysql-server
+
 ![1.1](/1.1.png)
+
 Дополнительно отключил проверку паролей из под рут:
 ```sql
 SHOW VARIABLES LIKE 'validate_password%';
 UNINSTALL COMPONENT 'file://component_validate_password';
 ```
 Создал пользователя sys_temp
-СКРИН 1.3
+
+![1.3](/1.3.png)
+
 Дал все привелегии пользователю sys_temp
 Запрос на получение списка прав:
-СКРИН 1.5
+
+![1.5](/1.5.png)
+
 Скачал и распаковал данные,востановил БД, вывел список таблиц:
 ```bash
 wget https://downloads.mysql.com/docs/sakila-db.zip
@@ -52,7 +58,9 @@ mysql -u sys_temp -p sakila < sakila-db/sakila-schema.sql
 mysql -u sys_temp -p sakila < sakila-db/sakila-data.sql
 mysql -u sys_temp -p -e "USE sakila; SHOW TABLES;"
 ```
-СКРИН 1.8
+
+![1.8](/1.8.png)
+
 Стартовые запросы:
 ```sql 
 #root
@@ -77,7 +85,7 @@ EXIT;
 customer         | customer_id
 ```
 
-###Решение 
+### Решение 
 Подключился под sys_temp
 ```bash
 mysql -u sys_temp -p
@@ -91,7 +99,8 @@ WHERE t.table_schema = 'sakila' AND kcu.constraint_name = 'PRIMARY'
 ORDER BY t.table_name;
 ```
 Вывод таблицы:
-СКРИН 2
+
+![2](/2.png)
 
 
 ### Задание 3*
