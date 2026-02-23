@@ -26,11 +26,13 @@ ALTER USER 'sys_test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pass
 
 *Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.*
 
+
 ###Решение
+
 
 Работа проводилась на Ubuntu server 24.04LTS.
 Установил mysql-server
-СКРИН 1.1
+![1.1](/1.1.png)
 Дополнительно отключил проверку паролей из под рут:
 ```sql
 SHOW VARIABLES LIKE 'validate_password%';
